@@ -1,0 +1,15 @@
+;;;; package.lisp
+
+(defpackage #:silicon
+  (:use #:cl)
+  (:import-from :my-utils
+		:polyeval)
+  (:import-from :gsll
+		:make-one-dimensional-root-solver-f
+		:+brent-fsolver+
+		:root-test-interval
+		:solution
+		:fsolver-upper
+		:fsolver-lower
+		:iterate))
+
