@@ -4,6 +4,5 @@
   :serial t
   :components ((:file "package")
                (:file "silicon"))
-  :depends-on (:my-utils
-	       :gsll))
+  :depends-on ("lisp-unit"))
 

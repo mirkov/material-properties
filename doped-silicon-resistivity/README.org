@@ -1,0 +1,57 @@
+#+title: Doped silicon resistivity
+
+This package implements equations from the ASTM F723 standard for
+calculating doped silicon resitivity or dopant concentration at 23 C.
+
+
+* Description
+
+  ASTM F 723-99 document
+  #+BEGIN_QUOTE
+  ... describes a conversion between dopant density and resistivy for
+arsenic-, boron- and phosphorusdoped single crystal silicon at 23°C.
+  #+END_QUOTE
+
+  This package implements the equations from that standard given in
+  sections 7.1.3.1, 7.1.3.2, 7.2.3.1, 7.2.3.2 and 7.2.3.3.
+
+  The ranges of validity of the equations:
+  | Dopant     | n_{min} | n_{max}   | \rho_{min}  | \rho_{max} |
+  |------------+------+--------+-------+------|
+  | Boron      | 10^{12} | 10^{21}   | 0.1m\Omega | 10k\Omega |
+  | Phosphorus | 10^{12} | 10^{21}   | 0.1m\Omega | 10k\Omega |
+  | Arsenic_{}    | 10^{19} | 6\times10^{20} |       |      | 
+
+  As the document notes, the equations are not fully self-consistent:
+  calculation of n\rightarrow\rho\rightarrow{}n does not reproduce the original value of n.
+  The error increases towards the end of the ranges.
+
+* Nomenclature and definitions
+
+** ASTM
+
+   American Society for Testing and Materials
+
+* Dictionary
+
+** rho-b, rho-n, rho-as
+*** Syntax
+    rho-b n -> rho
+*** Arguments and values
+    - n :: dopant density [cm^{-3}]
+    - rho :: resistivity [\Omega cm]
+
+
+    Calculate resistivity of boron, phosphorus, and arsenic doped Si
+    as function of dopant density at 27 C.
+
+** n-b, n-n
+*** Syntax
+    n-b rho -> n
+*** Arguments and values
+    - n :: dopant density [cm^{-3}]
+    - rho :: resistivity [\Omega cm]
+
+
+    Calculate dopant density of boron, and phosphorus as function of
+    resistivity at 27 C.
