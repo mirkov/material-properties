@@ -2,19 +2,44 @@
 
 (defpackage #:doped-silicon-resistivity
   (:nicknames #:dsr)
-  (:use #:cl #:lisp-unit))
+  (:use #:cl #:lisp-unit)
+  (:export :n-b
+	   :n-p
+	   :rho-b
+	   :rho-p
+	   :rho-as))
 
 (in-package #:doped-silicon-resistivity)
 
+;;; Utilities
 (defmacro assert-in-range (value min max)
   (alexandria:once-only (value min max)
     `(assert (and (>= ,value ,min)
 		  (<= ,value ,max)) ()
 		  "Value, ~a, must be between ~a and ~a" ,value ,min ,max)))
 
+
 (defun horner (x &rest coeffs)
   (reduce #'(lambda (coef acc) (+ (* acc x) coef))
 	  coeffs :from-end t :initial-value 0))
+
+
+;;; Constants that define the range of validity.  The rho-... range is
+;;; applicable for calculating dopant density in terms of resitivity.
+;;; The n-... range is applicable when calculating resitivity in terms
+;;; of dopant density.
+(defconstant +rho-b-min+ 1e-4 "Minimum valid value of rho in n-b")
+(defconstant +rho-b-max+ 1e4 "Maximum valid value of rho in n-b")
+(defconstant +rho-p-min+ 1e-4 "Minimum valid value of rho in n-p")
+(defconstant +rho-p-max+ 1e4 "Maximum valid value of rho in n-p")
+(defconstant +n-b-min+ 1e12 "Minimum valid value of n in rho-b")
+(defconstant +n-b-max+ 1e21 "Maximum valid value of n in rho-b")
+(defconstant +n-p-min+ 1e12 "Minimum valid value of n in rho-p")
+(defconstant +n-p-max+ 5e20 "Maximum valid value of n in rho-p")
+(defconstant +n-as-min+ 1e19 "Minimum valid value of n in rho-as")
+(defconstant +n-as-max+ 6e20 "Maximum valid value of n in rho-as")
+
+
 
 (defun n-b (rho)
   " Boron density [cm^-3] as function of resistivity [Ohm cm].
@@ -71,7 +96,7 @@ Phosphorus density (cm^-3) at 296 K.
 n must be in the range 1e12 - 5e20
 
 ASTM F723 (5, 6)"
-  (assert-in-range n 1e12 1e21)
+  (assert-in-range n 1e12 5e20)
   (let ((A -3.0769)
 	(B 2.2108)
 	(C -0.62272)

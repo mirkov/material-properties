@@ -34,6 +34,34 @@ arsenic-, boron- and phosphorusdoped single crystal silicon at 23°C.
 
 * Dictionary
 
+** ~+rho-b-min+~, ~+rho-b-max+~, ~+rho-p-min+~, ~+rho-p-max+~
+
+   
+
+*** Constant value:
+    - ~+rho-b-min+~ :: 1e-4
+    - ~+rho-b-max+~ :: 1e4
+    - ~+rho-p-min+~ :: 1e-4
+    - ~+rho-p-max+~ :: 1e4
+
+*** Description
+    Minumum and maximum values of resistivity (in Ohm-cm) when used
+    in the calculation of Boron (b) or Phosphorus (p) dopant density
+** +n-b-min+, +n-b-max+, +n-b-min+, +n-as-max+, +n-as-min+, +n-as-max+
+*** Constant value:
+    - ~+n-b-min+~ :: 1e12
+    - ~+n-b-max+~ :: 1e21
+    - ~+n-b-min+~ :: 1e12
+    - ~+n-as-max+~ :: 1e21
+    - ~+n-as-min+~ :: 1e19
+    - ~+n-as-max+~ :: 6e20
+      
+      
+*** Description
+    Minimum and maximum values of Boron (b), Phosphorus (p), or
+    Arsenic (as) dopant density (in cm^-3) when used in the resistivity
+    calculation
+    
 ** rho-b, rho-n, rho-as
 *** Syntax
     rho-b n -> rho

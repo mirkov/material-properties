@@ -1,8 +1,7 @@
 ;;;; silicon.asd
 
-(asdf:defsystem #:silicon
+(asdf:defsystem #:doped-silicon-resistivity
   :serial t
-  :components ((:file "package")
-               (:file "silicon"))
-  :depends-on ("lisp-unit"))
+  :depends-on ("lisp-unit")
+  :components ((:file "doped-silicon-resistivity")))
 
